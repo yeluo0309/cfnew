@@ -1951,7 +1951,19 @@ function 生成值值589(链接列表588, 本地值587 = {}) {
   const 值值580 = ['proxies:'];
   for (const 数量值579 of 节点列表586) 值值580.push(构建值节点行(数量值579));
   const 节点仅 = 名称列表584.length ? 名称列表584.map(数量值578 => `      - ${处理本地值622(数量值578)}`).join('\n') : '      - DIRECT';
-  const 值值577 = [解码64('cHJveHktZ3JvdXBzOg=='), '  - name: "🚀 节点选择"', '    type: select', '    proxies:', '      - "🎯 全球直连"', 节点仅, '  - name: "🌍 国外媒体"', '    type: select', '    proxies:', 处理值选择值(名称列表584), '  - name: "📺 哔哩哔哩"', '    type: select', '    proxies:', 处理值选择值(名称列表584, {
+  const 自动选择组 = 名称列表584.length ? [
+    '  - name: "♻️ 自动选择"',
+    '    type: url-test',
+    '    url: "https://www.gstatic.com/generate_204"',
+    '    interval: 300',
+    '    tolerance: 50',
+    '    proxies:',
+    节点仅
+  ] : [];
+  const 主策略候选 = 名称列表584.length
+    ? ['      - "♻️ 自动选择"', '      - "🎯 全球直连"', 节点仅]
+    : ['      - "🎯 全球直连"', 节点仅];
+  const 值值577 = [解码64('cHJveHktZ3JvdXBzOg=='), ...自动选择组, '  - name: "🚀 节点选择"', '    type: select', '    proxies:', ...主策略候选, '  - name: "🌍 国外媒体"', '    type: select', '    proxies:', 处理值选择值(名称列表584), '  - name: "📺 哔哩哔哩"', '    type: select', '    proxies:', 处理值选择值(名称列表584, {
     directFirst: true
   }), '  - name: "📹 油管视频"', '    type: select', '    proxies:', 处理值选择值(名称列表584, {
     extraGroups: ['🌍 国外媒体']
